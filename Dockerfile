@@ -10,7 +10,7 @@ ENV VENV_DIR /srv/venv
 ENV PIP $VENV_DIR/bin/pip
 
 # virtual environment Python path
-ENV PYTHON $VENV_DIR/bin/pip
+ENV PYTHON $VENV_DIR/bin/python
 
 ADD . $APP_DIR
 WORKDIR $APP_DIR
