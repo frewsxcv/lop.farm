@@ -21,4 +21,4 @@ RUN apt-get install -y python3 python3-venv
 RUN python3 -m venv $VENV_DIR
 RUN $PIP install -r requirements.txt
 
-CMD $PYTHON manage.py runserver
+ENTRYPOINT ["/srv/venv/bin/python", "/srv/app/manage.py", "runserver"]
