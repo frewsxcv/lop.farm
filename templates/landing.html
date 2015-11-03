@@ -1,5 +1,20 @@
+{% load browserid %}
 <html>
+  <head>
+    {% browserid_css %}
+  </head>
   <body>
     <p>Welcome to fuzz-as-a-service</p>
+
+    {% browserid_info %}
+    {% if user.is_authenticated %}
+      <p>Current user: {{ user.email }}</p>
+      {% browserid_logout %}
+    {% else %}
+      {% browserid_login %}
+    {% endif %}
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    {% browserid_js %}
   </body>
 </html>
