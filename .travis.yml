@@ -4,6 +4,6 @@ sudo: false
 cache: pip
 before_script:
   - pip install flake8
-  - flake8 .
+  - flake8 --exclude=migrations .
 script:
   - python manage.py test
