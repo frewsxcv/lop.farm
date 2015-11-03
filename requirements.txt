@@ -1,2 +1,1 @@
 django==1.8.5
-docker-py==1.5.0
