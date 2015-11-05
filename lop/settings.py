@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_browserid',
     'landing',
+    'run',
 )
 
 AUTHENTICATION_BACKENDS = (
