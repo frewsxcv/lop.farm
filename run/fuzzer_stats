@@ -1,0 +1,25 @@
+start_time     : 1446730444
+last_update    : 1446730444
+fuzzer_pid     : 67881
+cycles_done    : 0
+execs_done     : 10
+execs_per_sec  : 46.30
+paths_total    : 1
+paths_favored  : 1
+paths_found    : 0
+paths_imported : 0
+max_depth      : 1
+cur_path       : 0
+pending_favs   : 1
+pending_total  : 1
+variable_paths : 0
+bitmap_cvg     : 0.24%
+unique_crashes : 0
+unique_hangs   : 0
+last_path      : 0
+last_crash     : 0
+last_hang      : 0
+exec_timeout   : 60
+afl_banner     : python
+afl_version    : 1.94b
+command_line   : afl-fuzz -i b -o a -- python foo_fuzz/test_fuzz_cryptograph.py
