@@ -5,4 +5,4 @@ def stats(filename):
     for i, x in enumerate(lines):
         lines[i][0] = lines[i][0].strip()
         lines[i][1] = lines[i][1].strip()
-    return lines
+    return dict(lines)
