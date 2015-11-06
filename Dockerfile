@@ -29,13 +29,16 @@ RUN tar -xf afl-1.94b.tgz
 WORKDIR /tmp/afl/afl-1.94b
 RUN make
 RUN make install
+# The following RUN is prompted when afl first starts
+
+RUN python3 -m venv $VENV_DIR
+ENV PATH $PATH:$VENV_DIR/bin/
+
+RUN $PIP install cython
 
 ADD . $APP_DIR
 WORKDIR $APP_DIR
 
-RUN python3 -m venv $VENV_DIR
-RUN $PIP install --upgrade pip
-RUN $PIP install cython
 RUN $PIP install -r requirements.txt
 
 EXPOSE 8000

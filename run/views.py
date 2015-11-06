@@ -15,7 +15,7 @@ def run(request):
 
     with open(os.devnull, 'w') as null:
         try:
-            subprocess.run([
+            subprocess.call([
                 PY_AFL_FUZZ_CMD, '-i', '.', '-o', '/tmp/tmpdir', 'python',
                 'run/fuzz_cryptography.py'],
                 timeout=10,

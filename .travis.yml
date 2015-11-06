@@ -1,5 +1,5 @@
 language: python
-python: 3.5
+python: 3.4
 sudo: required
 services:
   - docker
@@ -9,4 +9,4 @@ before_script:
   - pip install flake8
   - flake8 --exclude=migrations .
 script:
-  - docker run -t lop.io test
+  - docker run --privileged -t lop.io test
