@@ -1,2 +1,6 @@
 django==1.8.5
 django-browserid==1.0.1
+
+# Python + AFL deps
+cryptography==1.1
+python-afl==0.5.1
