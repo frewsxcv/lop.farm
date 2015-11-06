@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y \
   wget
 
 # Install AFL
+ENV AFL_HARDEN 1
 WORKDIR /tmp/afl
 RUN wget http://lcamtuf.coredump.cx/afl/releases/afl-1.94b.tgz
 RUN tar -xf afl-1.94b.tgz
