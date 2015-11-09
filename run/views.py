@@ -5,6 +5,8 @@ import subprocess
 from django.http import HttpResponseServerError
 from django.shortcuts import render
 
+from run.afl_utils import stats
+
 
 PY_AFL_FUZZ_CMD = 'py-afl-fuzz'
 
@@ -24,11 +26,6 @@ def run(request):
         except subprocess.TimeoutExpired:
             pass
 
-    with open('/tmp/tmpdir/fuzzer_stats') as f:
-        lines = f.readlines()
-    lines = [i.split(':', 1) for i in lines]
-    for i, x in enumerate(lines):
-        lines[i][0] = lines[i][0].strip()
-        lines[i][1] = lines[i][1].strip()
+    lines = stats('/tmp/tmpdir/fuzzer_stats')
 
     return render(request, 'run.html', {'stats': lines})
