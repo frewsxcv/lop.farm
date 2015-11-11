@@ -1,4 +1,4 @@
-django==1.8.5
+django==1.8.6
 django-browserid==1.0.1
 
 # Python + AFL deps
