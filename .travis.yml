@@ -1,5 +1,5 @@
 language: python
-python: 3.4
+python: 3.5
 sudo: required
 services:
   - docker
@@ -8,5 +8,7 @@ install:
 before_script:
   - pip install flake8
   - flake8 --exclude=migrations .
+  # Disable 'apport' (required by AFL)
+  - echo core | sudo tee /proc/sys/kernel/core_pattern
 script:
-  - docker run --privileged -t lop.io test
+  - docker run -t lop.io test

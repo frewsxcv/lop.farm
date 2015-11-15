@@ -1,4 +1,4 @@
-FROM ubuntu:15.10
+FROM python:3.5
 
 # AFL direcotry
 ENV AFL_DIR /srv/afl
@@ -16,9 +16,6 @@ RUN apt-get update && apt-get install -y \
   libffi-dev \
   make \
   libssl-dev \
-  python3 \
-  python3-dev \
-  python3-venv \
   wget
 
 # Install AFL
