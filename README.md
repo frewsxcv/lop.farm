@@ -23,3 +23,7 @@ Web service that runs [AFL](http://lcamtuf.coredump.cx/afl/) on your projects. B
 * Go support
 * Python support
 * Longer than 10 minutes processes (paid?)
+
+## License
+
+[Mozilla Public License, 2.0](https://mozilla.org/MPL/2.0/)
