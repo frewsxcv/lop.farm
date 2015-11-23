@@ -12,6 +12,8 @@ ENV PIP $VENV_DIR/bin/pip
 ENV PYTHON $VENV_DIR/bin/python
 # filename of afl file to download and extract
 ENV AFL_FILENAME afl-1.95b.tgz
+# Python requirements filename
+ENV REQUIREMENTS requirements.txt
 
 RUN apt-get update && apt-get install -y \
   gcc \
@@ -33,10 +35,12 @@ ENV PATH $PATH:$VENV_DIR/bin/
 
 RUN $PIP install cython
 
-ADD . $APP_DIR
 WORKDIR $APP_DIR
 
-RUN $PIP install -r requirements.txt
+COPY $REQUIREMENTS $REQUIREMENTS
+RUN $PIP install -r $REQUIREMENTS
+
+COPY . $APP_DIR
 
 EXPOSE 8000
 
