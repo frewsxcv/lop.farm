@@ -4,11 +4,11 @@ sudo: required
 services:
   - docker
 install:
-  - docker build -t lop.io .
+  - docker build -t lop.farm .
 before_script:
   - pip install flake8
   - flake8 --exclude=migrations .
   # Disable 'apport' (required by AFL)
   - echo core | sudo tee /proc/sys/kernel/core_pattern
 script:
-  - docker run -t lop.io test
+  - docker run -t lop.farm test
