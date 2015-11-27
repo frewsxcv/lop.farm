@@ -1,6 +1,4 @@
-# Hosted AFL
-
-**Name of project has yet to be determined...**
+# lop.farm
 
 Web service that runs [AFL](http://lcamtuf.coredump.cx/afl/) on your projects. Built with Docker running on Kubernetes.
 
