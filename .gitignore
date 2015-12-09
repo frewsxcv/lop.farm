@@ -1,1 +1,4 @@
 *.sqlite3
+*.tfvars
+*.tfstate
+*.tfstate.backup

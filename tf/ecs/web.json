@@ -1,0 +1,35 @@
+[
+  {
+    "volumesFrom": [],
+    "memory": 300,
+    "extraHosts": null,
+    "dnsServers": null,
+    "disableNetworking": null,
+    "dnsSearchDomains": null,
+    "portMappings": [
+      {
+        "hostPort": 8000,
+        "containerPort": 8000,
+        "protocol": "tcp"
+      }
+    ],
+    "hostname": null,
+    "essential": true,
+    "entryPoint": [],
+    "mountPoints": [],
+    "name": "lop-farm-web",
+    "ulimits": null,
+    "dockerSecurityOptions": null,
+    "environment": [],
+    "links": [],
+    "workingDirectory": null,
+    "readonlyRootFilesystem": null,
+    "image": "corey/lop.farm",
+    "command": [],
+    "user": null,
+    "dockerLabels": null,
+    "logConfiguration": null,
+    "cpu": 10,
+    "privileged": null
+  }
+]
