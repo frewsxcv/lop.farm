@@ -1,5 +1,7 @@
+celery==3.1.19
 django==1.8.6
 django-browserid==1.0.1
+kombu==3.0.30
 
 # Python + AFL deps
 cryptography==1.1

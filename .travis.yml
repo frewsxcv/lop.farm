@@ -4,7 +4,8 @@ sudo: required
 services:
   - docker
 install:
-  - docker build -t lop.farm .
+  - docker build -f docker/worker.Dockerfile .
+  - docker build -t lop.farm -f docker/web.Dockerfile .
 before_script:
   - pip install flake8
   - flake8 --exclude=migrations .
