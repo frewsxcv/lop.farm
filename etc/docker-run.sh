@@ -12,5 +12,5 @@ elif [ "$1" = "worker" ]; then
   /srv/venv/bin/celery -A lop_farm worker
 else
   echo "Invalid command"
-  exit
+  exit 1
 fi;
