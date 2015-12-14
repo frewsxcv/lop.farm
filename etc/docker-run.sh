@@ -10,6 +10,8 @@ if [ "$1" = "web" ]; then
 elif [ "$1" = "worker" ]; then
   export C_FORCE_ROOT="true"
   /srv/venv/bin/celery -A lop_farm worker
+elif [ "$1" = "test" ]; then
+  /srv/venv/bin/python /srv/app/manage.py test
 else
   echo "Invalid command"
   exit 1
