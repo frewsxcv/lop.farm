@@ -44,7 +44,4 @@ COPY . $APP_DIR
 
 EXPOSE 8000
 
-# FIXME: don't migrate upon every build
-RUN $PYTHON $APP_DIR/manage.py migrate
-
 ENTRYPOINT ["/srv/app/etc/docker-run.sh"]

@@ -6,6 +6,7 @@
 #       or custom file names for dockerfiles
 
 if [ "$1" = "web" ]; then
+  /srv/venv/bin/python /srv/app/manage.py migrate
   /srv/venv/bin/python /srv/app/manage.py runserver 0.0.0.0:8000
 elif [ "$1" = "worker" ]; then
   export C_FORCE_ROOT="true"
