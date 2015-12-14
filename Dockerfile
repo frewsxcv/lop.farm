@@ -47,5 +47,4 @@ EXPOSE 8000
 # FIXME: don't migrate upon every build
 RUN $PYTHON $APP_DIR/manage.py migrate
 
-ENTRYPOINT ["/srv/venv/bin/python", "/srv/app/manage.py"]
-CMD ["runserver", "0.0.0.0:8000"]
+ENTRYPOINT ["/srv/app/etc/docker-run.sh"]
