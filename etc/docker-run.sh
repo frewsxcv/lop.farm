@@ -8,6 +8,9 @@
 if [ "$1" = "web" ]; then
   /srv/venv/bin/python /srv/app/manage.py migrate
   /srv/venv/bin/python /srv/app/manage.py runserver 0.0.0.0:8000
+elif [ "$1" = "manage" ]; then
+  shift
+  /srv/venv/bin/python /srv/app/manage.py $*
 elif [ "$1" = "worker" ]; then
   export C_FORCE_ROOT="true"
   /srv/venv/bin/celery -A lop_farm worker
