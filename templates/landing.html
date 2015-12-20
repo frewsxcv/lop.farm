@@ -14,6 +14,26 @@
       {% browserid_login %}
     {% endif %}
 
+    <h1>Latest runs</h1>
+    <table>
+      <tr>
+        <th>Paths found</th>
+        <th>Unique hangs</th>
+        <th>Unique crashes</th>
+        <th>Afl version</th>
+        <th>Execs per second</th>
+      </tr>
+      {% for run in runs %}
+      <tr>
+        <td>{{ run.paths_found }}</td>
+        <td>{{ run.unique_hangs }}</td>
+        <td>{{ run.unique_crashes }}</td>
+        <td>{{ run.afl_version }}</td>
+        <td>{{ run.execs_per_sec }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     {% browserid_js %}
   </body>
