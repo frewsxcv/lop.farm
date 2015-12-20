@@ -1,4 +1,12 @@
+from django.core.urlresolvers import reverse
 from django.test import Client, TestCase
+
+
+class LandingViewTestCase(TestCase):
+    def test_landing(self):
+        url = reverse('landing')
+        res = self.client.get(url)
+        self.assertEqual(200, res.status_code)
 
 
 class LandingTestCase(TestCase):
