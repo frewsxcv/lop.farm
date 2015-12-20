@@ -1,5 +1,6 @@
 from datetime import datetime
 import os
+import shutil
 import subprocess
 
 from celery import task
@@ -10,14 +11,17 @@ from run.models import AflRun
 
 
 PY_AFL_FUZZ_CMD = 'py-afl-fuzz'
+AFL_OUTPUT_DIR = '/tmp/tmpdir'
 
 
 @task
 def run_afl():
+    assert not os.path.exists(AFL_OUTPUT_DIR)
+
     with open(os.devnull, 'w') as null:
         try:
             subprocess.run([
-                PY_AFL_FUZZ_CMD, '-i', '.', '-o', '/tmp/tmpdir',
+                PY_AFL_FUZZ_CMD, '-i', '.', '-o', AFL_OUTPUT_DIR,
                 '/srv/venv/bin/python', 'run/fuzz_cryptography.py'],
                 timeout=10,
                 stdout=null,
@@ -25,7 +29,7 @@ def run_afl():
         except subprocess.TimeoutExpired:
             pass
 
-    lines = stats('/tmp/tmpdir/fuzzer_stats')
+    lines = stats(os.path.join(AFL_OUTPUT_DIR, 'fuzzer_stats'))
 
     model_args = {
         'start_time': timezone.make_aware(
@@ -66,3 +70,5 @@ def run_afl():
     assert not lines
 
     AflRun.objects.create(**model_args)
+
+    shutil.rmtree(AFL_OUTPUT_DIR)
