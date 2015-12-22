@@ -1,5 +1,7 @@
 from django.conf.urls import url
 
+from run import views
+
 urlpatterns = [
-    url(r'^run/$', 'run.views.run', name='run'),
+    url(r'^run/$', views.run, name='run'),
 ]
