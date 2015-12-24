@@ -1,7 +1,16 @@
 from django.db import models
 
 
+class Run(models.Model):
+    # repository = models.ForeignKey(Repository)
+    queued_on = models.DateTimeField(auto_now_add=True)
+    started_on = models.DateTimeField(null=True)
+    completed_on = models.DateTimeField(null=True)
+
+
 class AflRun(models.Model):
+    run = models.OneToOneField(Run)
+
     start_time = models.DateTimeField(
         help_text='Start time')
     last_update = models.DateTimeField(
