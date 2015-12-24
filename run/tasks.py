@@ -4,10 +4,11 @@ import shutil
 import subprocess
 
 from celery import task
+from django.db import transaction
 from django.utils import timezone
 
 from run.afl_utils import stats
-from run.models import AflRun
+from run.models import AflRun, Run
 
 
 PY_AFL_FUZZ_CMD = 'py-afl-fuzz'
@@ -15,8 +16,12 @@ AFL_OUTPUT_DIR = '/tmp/tmpdir'
 
 
 @task
-def run_afl():
+def run_afl(run_id):
+    assert isinstance(run_id, int)
+
     assert not os.path.exists(AFL_OUTPUT_DIR)
+
+    Run.objects.filter(id=run_id).update(started_on=timezone.now())
 
     with open(os.devnull, 'w') as null:
         try:
@@ -30,6 +35,8 @@ def run_afl():
             pass
 
     lines = stats(os.path.join(AFL_OUTPUT_DIR, 'fuzzer_stats'))
+
+    shutil.rmtree(AFL_OUTPUT_DIR)
 
     model_args = {
         'start_time': timezone.make_aware(
@@ -69,6 +76,6 @@ def run_afl():
 
     assert not lines
 
-    AflRun.objects.create(**model_args)
-
-    shutil.rmtree(AFL_OUTPUT_DIR)
+    with transaction.atomic():
+        AflRun.objects.create(run_id=run_id, **model_args)
+        Run.objects.filter(id=run_id).update(completed_on=timezone.now())
