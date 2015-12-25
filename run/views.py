@@ -12,6 +12,6 @@ def run(request):
         return HttpResponseServerError()
 
     run = Run.objects.create()
-    run_afl.delay(run.id)
+    run_afl.delay(run.id, 10)
 
     return render(request, 'run.html')

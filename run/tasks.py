@@ -16,8 +16,9 @@ AFL_OUTPUT_DIR = '/tmp/tmpdir'
 
 
 @task
-def run_afl(run_id):
+def run_afl(run_id, duration):
     assert isinstance(run_id, int)
+    assert isinstance(duration, int)
 
     assert not os.path.exists(AFL_OUTPUT_DIR)
 
@@ -28,7 +29,7 @@ def run_afl(run_id):
             subprocess.run([
                 PY_AFL_FUZZ_CMD, '-i', '.', '-o', AFL_OUTPUT_DIR,
                 '/srv/venv/bin/python', 'run/fuzz_cryptography.py'],
-                timeout=10,
+                timeout=duration,
                 stdout=null,
                 stderr=null)
         except subprocess.TimeoutExpired:
