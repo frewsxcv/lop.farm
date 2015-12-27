@@ -6,16 +6,19 @@
 #       or custom file names for dockerfiles
 
 if [ "$1" = "web" ]; then
-  /srv/venv/bin/python /srv/app/manage.py migrate
-  /srv/venv/bin/python /srv/app/manage.py runserver 0.0.0.0:8000
+  cd $APP_DIR
+  $PYTHON manage.py migrate
+  $PYTHON manage.py runserver 0.0.0.0:8000
 elif [ "$1" = "manage" ]; then
   shift
-  /srv/venv/bin/python /srv/app/manage.py $*
+  cd $APP_DIR
+  $PYTHON manage.py $*
 elif [ "$1" = "worker" ]; then
   export C_FORCE_ROOT="true"
-  /srv/venv/bin/celery -A lop_farm worker
+  $VENV_DIR/bin/celery -A lop_farm worker
 elif [ "$1" = "test" ]; then
-  /srv/venv/bin/python /srv/app/manage.py test
+  cd $APP_DIR
+  $PYTHON manage.py test
 else
   echo "Invalid command"
   exit 1
