@@ -14,6 +14,7 @@ elif [ "$1" = "manage" ]; then
   cd $APP_DIR
   $PYTHON manage.py $*
 elif [ "$1" = "worker" ]; then
+  cd $APP_DIR
   export C_FORCE_ROOT="true"
   $VENV_DIR/bin/celery -A lop_farm worker
 elif [ "$1" = "test" ]; then

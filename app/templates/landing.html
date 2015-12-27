@@ -14,6 +14,30 @@
       {% browserid_login %}
     {% endif %}
 
+    <h1>Pending runs</h1>
+    <table>
+      <tr>
+        <th>Queued on</th>
+      </tr>
+      {% for run in pending_runs %}
+      <tr>
+        <td>{{ run.queued_on }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <h1>Active runs</h1>
+    <table>
+      <tr>
+        <th>Started on</th>
+      </tr>
+      {% for run in active_runs %}
+      <tr>
+        <td>{{ run.started_on }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
     <h1>Latest runs</h1>
     <table>
       <tr>
@@ -23,7 +47,7 @@
         <th>Afl version</th>
         <th>Execs per second</th>
       </tr>
-      {% for run in runs %}
+      {% for run in afl_runs %}
       <tr>
         <td>{{ run.paths_found }}</td>
         <td>{{ run.unique_hangs }}</td>
