@@ -2,8 +2,10 @@ FROM python:3.5
 
 # AFL direcotry
 ENV AFL_DIR /srv/afl
+# Repository directory
+ENV REPO_DIR /srv/lop_farm
 # Django app directory
-ENV APP_DIR /srv/app
+ENV APP_DIR $REPO_DIR/app
 # virtual environment directory
 ENV VENV_DIR /srv/venv
 # virtual environment pip path
@@ -35,13 +37,13 @@ ENV PATH $PATH:$VENV_DIR/bin/
 
 RUN $PIP install cython
 
-WORKDIR $APP_DIR
+WORKDIR $REPO_DIR
 
 COPY $REQUIREMENTS $REQUIREMENTS
 RUN $PIP install -r $REQUIREMENTS
 
-COPY . $APP_DIR
+COPY . $REPO_DIR
 
 EXPOSE 8000
 
-ENTRYPOINT ["/srv/app/etc/docker-run.sh"]
+ENTRYPOINT ["/srv/lop_farm/etc/docker-run.sh"]
