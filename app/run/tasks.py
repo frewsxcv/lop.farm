@@ -14,6 +14,9 @@ from run.models import AflRun, Run
 PY_AFL_FUZZ_CMD = 'py-afl-fuzz'
 AFL_OUTPUT_DIR = '/tmp/tmpdir'
 
+# FIXME: username should be randomly generated? incorporate user id / username?
+_USERNAME = 'meow'
+
 
 @task
 def run_afl(run_id, duration):
@@ -22,8 +25,21 @@ def run_afl(run_id, duration):
 
     assert not os.path.exists(AFL_OUTPUT_DIR)
 
+    subprocess.run(['adduser', _USERNAME, '--gecos', '""',
+                    '--disabled-password']).check_returncode()
+
+    root_uid = os.getuid()
+
+    run = subprocess.run(['id', '-u', _USERNAME], stdout=subprocess.PIPE)
+    run.check_returncode()
+    uid = int(run.stdout)
+    assert uid != root_uid
+
+    os.seteuid(uid)
+
     Run.objects.filter(id=run_id).update(started_on=timezone.now())
 
+    # TODO: create home directory for user, run code inside home directory
     with open(os.devnull, 'w') as null:
         try:
             subprocess.run([
@@ -80,3 +96,7 @@ def run_afl(run_id, duration):
     with transaction.atomic():
         AflRun.objects.create(run_id=run_id, **model_args)
         Run.objects.filter(id=run_id).update(completed_on=timezone.now())
+
+    os.seteuid(root_uid)
+
+    subprocess.run(['userdel', '-r', _USERNAME]).check_returncode()
