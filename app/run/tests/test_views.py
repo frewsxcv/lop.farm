@@ -8,7 +8,7 @@ from run.models import AflRun
 class RunViewTestCase(TestCase):
     @override_settings(CELERY_ALWAYS_EAGER=True)
     def test_run_view(self):
-        url = reverse('run')
+        url = reverse('trigger_run')
         res = self.client.get(url)
         self.assertEqual(200, res.status_code)
         self.assertEqual(1, AflRun.objects.count())
