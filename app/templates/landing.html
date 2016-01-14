@@ -41,6 +41,7 @@
     <h1>Latest runs</h1>
     <table>
       <tr>
+        <th>ID</th>
         <th>Paths found</th>
         <th>Unique hangs</th>
         <th>Unique crashes</th>
@@ -49,6 +50,7 @@
       </tr>
       {% for run in afl_runs %}
       <tr>
+        <td><a href='{% url 'run' run_id=run.id %}'>{{ run.id }}</a></th>
         <td>{{ run.paths_found }}</td>
         <td>{{ run.unique_hangs }}</td>
         <td>{{ run.unique_crashes }}</td>
