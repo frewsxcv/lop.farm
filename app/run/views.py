@@ -23,4 +23,4 @@ def run(request, run_id):
     except Run.DoesNotExist:
         pass
 
-    return render(request, 'run.html', {'run': run})
+    return render(request, 'run.html', {'run': run, 'afl_run': run.aflrun})
