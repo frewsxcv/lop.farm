@@ -1,1 +1,71 @@
 <p>Run ID: {{ run.id }}</p>
+<dl>
+  <dt>start_time</dt>
+  <dd>{{ afl_run.start_time }}</dd>
+
+  <dt>last_update</dt>
+  <dd>{{ afl_run.last_update }}</dd>
+
+  <dt>fuzzer_pid</dt>
+  <dd>{{ afl_run.fuzzer_pid }}</dd>
+
+  <dt>cycles_done</dt>
+  <dd>{{ afl_run.cycles_done }}</dd>
+
+  <dt>execs_done</dt>
+  <dd>{{ afl_run.execs_done }}</dd>
+
+  <dt>execs_per_sec</dt>
+  <dd>{{ afl_run.execs_per_sec }}</dd>
+
+  <dt>paths_total</dt>
+  <dd>{{ afl_run.paths_total }}</dd>
+
+  <dt>paths_favored</dt>
+  <dd>{{ afl_run.paths_favored }}</dd>
+
+  <dt>paths_found</dt>
+  <dd>{{ afl_run.paths_found }}</dd>
+
+  <dt>paths_imported</dt>
+  <dd>{{ afl_run.paths_imported }}</dd>
+
+  <dt>max_depth</dt>
+  <dd>{{ afl_run.max_depth }}</dd>
+
+  <dt>cur_path</dt>
+  <dd>{{ afl_run.cur_path }}</dd>
+
+  <dt>pending_favs</dt>
+  <dd>{{ afl_run.pending_favs }}</dd>
+
+  <dt>pending_total</dt>
+  <dd>{{ afl_run.pending_total }}</dd>
+
+  <dt>variable_paths</dt>
+  <dd>{{ afl_run.variable_paths }}</dd>
+
+  <dt>bitmap_cvg</dt>
+  <dd>{{ afl_run.bitmap_cvg }}</dd>
+
+  <dt>unique_crashes</dt>
+  <dd>{{ afl_run.unique_crashes }}</dd>
+
+  <dt>unique_hangs</dt>
+  <dd>{{ afl_run.unique_hangs }}</dd>
+
+  <dt>last_path</dt>
+  <dd>{{ afl_run.last_path }}</dd>
+
+  <dt>last_crash</dt>
+  <dd>{{ afl_run.last_crash }}</dd>
+
+  <dt>last_hang</dt>
+  <dd>{{ afl_run.last_hang }}</dd>
+
+  <dt>exec_timeout</dt>
+  <dd>{{ afl_run.exec_timeout }}</dd>
+
+  <dt>afl_version</dt>
+  <dd>{{ afl_run.afl_version }}</dt>
+</dl>
