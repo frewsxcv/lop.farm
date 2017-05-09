@@ -1,6 +1,7 @@
 celery==3.1.19
 django==1.9.0
 django-browserid==2.0.0
+django-oauth-toolkit
 kombu==3.0.30
 psycopg2==2.6.1
 redis==2.10.5
