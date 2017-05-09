@@ -8,6 +8,7 @@
 if [ "$1" = "web" ]; then
   cd $APP_DIR
   $PYTHON manage.py migrate
+  $PYTHON manage.py migrate oauth2_provider
   $PYTHON manage.py runserver 0.0.0.0:8000
 elif [ "$1" = "manage" ]; then
   shift
